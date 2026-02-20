@@ -1,0 +1,6 @@
+replicaCount: 2
+env:
+    APP_ENV: "prod"
+autoscaling:
+    maxReplicas: 5
+    

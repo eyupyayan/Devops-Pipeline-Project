@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "task-api.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "task-api.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "task-api.name" . }}
+    spec:
+      containers:
+        - name: task-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+
+          # 🔽 HER
+          envFrom:
+            - configMapRef:
+                name: {{ include "task-api.fullname" . }}
+
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
