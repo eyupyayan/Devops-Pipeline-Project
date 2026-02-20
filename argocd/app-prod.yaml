@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/eyupyayan/Devops-Pipeline-Project.git
     targetRevision: master
-    path: Devops-Pipeline-Project/argocd
+    path: argocd
     helm:
       valueFiles:
         - values-prod.yaml
@@ -20,3 +20,4 @@ spec:
       prune: true
 
       selfHeal: true
+
