@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL:https://github.com/eyupyayan/Devops-Pipeline-Project.git
+    repoURL: https://github.com/eyupyayan/Devops-Pipeline-Project.git
     targetRevision: master
     path: argocd
     helm:
@@ -20,4 +20,5 @@ spec:
       prune: true
 
       selfHeal: true
+
 
