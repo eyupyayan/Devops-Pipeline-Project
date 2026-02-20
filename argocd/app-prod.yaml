@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/DEG/task-api-helm.git
+    repoURL: https://github.com/eyupyayan/Devops-Pipeline-Project.git
     targetRevision: master
     path: Devops-Pipeline-Project/argocd
     helm:
@@ -18,4 +18,5 @@ spec:
   syncPolicy:
     automated:
       prune: true
+
       selfHeal: true
