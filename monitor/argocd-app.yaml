@@ -6,12 +6,23 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/eyupyayan/Devops-Pipeline-Project.git
-    targetRevision: master
-    path: monitor
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: "*"
     helm:
-      valueFiles:
-        - values-kps.yaml
+      releaseName: monitor-stack
+      values: |
+        grafana:
+          enabled: true
+          adminPassword: admin
+
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+            podMonitorSelectorNilUsesHelmValues: false
+
+        defaultRules:
+          create: true
   destination:
     server: https://kubernetes.default.svc
     namespace: monitor
@@ -19,3 +30,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
