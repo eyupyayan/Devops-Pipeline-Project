@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitor-stack
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/eyupyayan/Devops-Pipeline-Project.git
+    targetRevision: master
+    path: monitor
+    helm:
+      valueFiles:
+        - values-kps.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitor
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
